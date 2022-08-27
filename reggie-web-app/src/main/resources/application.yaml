@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: reggie-web-app
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql:///reggie?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 7506448816zcy
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mappers/**.xml
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+reggie:
+  sms:
+    key: LTAI5tPrFrqdendoF2rd63hB
+    secret: mbSouVoH7gi7dMrrPgCeY3iLTessdY
+    sign-name: 阿里云短信测试
+    template-code: SMS_154950909
