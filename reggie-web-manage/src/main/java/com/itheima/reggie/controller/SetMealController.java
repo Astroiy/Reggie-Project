@@ -5,6 +5,8 @@ import com.itheima.reggie.common.ResultInfo;
 import com.itheima.reggie.domain.Setmeal;
 import com.itheima.reggie.service.SetMealService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +24,14 @@ public class SetMealController {
     }
 
     @PostMapping("/setmeal")
+    @CacheEvict(value = "setmeal",allEntries = true)
     public ResultInfo save(@RequestBody Setmeal setmeal){
         setMealService.save(setmeal);
         return ResultInfo.success(null);
     }
 
     @DeleteMapping("/setmeal")
+    @CacheEvict(value="setmeal",allEntries = true)
     public ResultInfo delete(@RequestParam List<Long> ids){
         setMealService.delete(ids);
         return ResultInfo.success(null);
@@ -40,6 +44,7 @@ public class SetMealController {
     }
 
     @PutMapping("/setmeal")
+    @CacheEvict(value="setmeal",allEntries = true)
     public ResultInfo update(@RequestBody Setmeal setmeal){
         setMealService.update(setmeal);
         return ResultInfo.success(null);
